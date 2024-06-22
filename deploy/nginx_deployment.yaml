@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-k8s-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+        # 和下面的 template 中的标签一致，使用选中的pod
+      app: angular-k8s
+  template:
+    metadata:
+      labels:
+        app: angular-k8s
+    spec:
+      containers:
+        - image: terry/k8s_angular_demo:v2
+          name: angular-container-name
